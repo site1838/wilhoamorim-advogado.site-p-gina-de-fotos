@@ -133,7 +133,7 @@
                     <div class="space-y-3">
                         <!-- Upload Direto -->
                         <div class="relative group">
-                            <input type="file" id="photo-file" accept="image/*" class="hidden" onchange="handleFileUpload(this)">
+                            <input type="file" id="photo-file" accept="image/*" multiple class="hidden" onchange="handleFileUpload(this)">
                             <label for="photo-file" class="flex items-center justify-center space-x-2 w-full bg-gold/5 border border-dashed border-gold/30 text-gold p-4 rounded-sm cursor-pointer hover:bg-gold/10 transition-all">
                                 <i data-lucide="upload-cloud" class="w-5 h-5"></i>
                                 <span class="text-xs font-bold uppercase tracking-widest" id="upload-label">Selecionar do Computador</span>
@@ -300,6 +300,28 @@
         }
 
         async function exportConfig() {
+            const local = await getLocalPhotos();
+            const config = JSON.stringify([...initialPhotos, ...local], null, 4);
+            const blob = new Blob([config], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'galeria_wilho_backup.json';
+            a.click();
+        }
+    </script>
+
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+        }
+    </style>
+</body>
+</html>
+ortConfig() {
             const local = await getLocalPhotos();
             const config = JSON.stringify([...initialPhotos, ...local], null, 4);
             const blob = new Blob([config], { type: 'application/json' });
