@@ -230,8 +230,9 @@
         }
 
         function handleFileUpload(input) {
-            if (input.files && input.files[0]) {
-                document.getElementById('upload-label').innerText = input.files[0].name;
+            if (input.files && input.files.length > 0) {
+                const count = input.files.length;
+                document.getElementById('upload-label').innerText = count === 1 ? input.files[0].name : `${count} arquivos selecionados`;
             }
         }
 
@@ -239,24 +240,44 @@
             const urlInput = document.getElementById('photo-url');
             const fileInput = document.getElementById('photo-file');
             const titleInput = document.getElementById('photo-title');
-            
-            let photoData = {
-                title: titleInput.value || "Novo Registro",
-                url: urlInput.value
-            };
 
-            // Se houver arquivo selecionado, converte para Base64
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = async function(e) {
-                    photoData.url = e.target.result; // Base64
-                    await savePhotoToDB(photoData);
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else if (photoData.url) {
-                await savePhotoToDB(photoData);
+            const titleBase = titleInput.value || "Novo Registro";
+
+            if (fileInput.files && fileInput.files.length > 0) {
+                const files = Array.from(fileInput.files);
+                let count = 0;
+
+                for (const file of files) {
+                    await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = async (e) => {
+                            const transaction = db.transaction(["photos"], "readwrite");
+                            const store = transaction.objectStore("photos");
+                            store.add({
+                                title: files.length === 1 ? titleBase : `${titleBase} (${count + 1})`,
+                                url: e.target.result
+                            });
+                            transaction.oncomplete = () => {
+                                count++;
+                                resolve();
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+                alert(`${count} fotos adicionadas com sucesso!`);
+                resetForm();
+                renderGallery();
+            } else if (urlInput.value) {
+                await savePhotoToDB({
+                    title: titleBase,
+                    url: urlInput.value
+                });
+                alert('Foto adicionada com sucesso!');
+                resetForm();
+                renderGallery();
             } else {
-                alert('Selecione um arquivo ou insira uma URL.');
+                alert('Selecione arquivos ou insira uma URL.');
             }
         }
 
@@ -300,28 +321,6 @@
         }
 
         async function exportConfig() {
-            const local = await getLocalPhotos();
-            const config = JSON.stringify([...initialPhotos, ...local], null, 4);
-            const blob = new Blob([config], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'galeria_wilho_backup.json';
-            a.click();
-        }
-    </script>
-
-    <style>
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fade-in 0.8s ease-out forwards;
-        }
-    </style>
-</body>
-</html>
-ortConfig() {
             const local = await getLocalPhotos();
             const config = JSON.stringify([...initialPhotos, ...local], null, 4);
             const blob = new Blob([config], { type: 'application/json' });
