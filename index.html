@@ -127,26 +127,39 @@
     <script>
         lucide.createIcons();
 
-        const initialPhotos = [
+                const initialPhotos = [
             { url: 'fotos/Foto dele 2.jpeg', title: 'Dr. Wilho Amorim' },
-            { url: 'fotos/Foto dele 3.jpeg', title: 'AtuaÃ§Ã£o Criminal' },
+            { url: 'fotos/Foto dele 3.jpeg', title: 'Atuação Criminal' },
             { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19.jpeg', title: 'Infraestrutura Sede' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (1).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (2).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (3).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20.jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (1).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (2).jpeg', title: 'EscritÃ³rio Detalhes' },
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (1).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (2).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.19 (3).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20.jpeg', title: 'Registro Profissional' },        
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (1).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (2).jpeg', title: 'Escritório Detalhes' },     
             { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (3).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (4).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.21.jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.21 (1).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.43.jpeg', title: 'Atendimento Especializado' },
-            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.43 (1).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.44.jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.44 (1).jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.12.58.jpeg', title: 'Registro Profissional' },
-            { url: 'fotos/trajetoria.png', title: 'TrajetÃ³ria e PreparaÃ§Ã£o' }
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.20 (4).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.21.jpeg', title: 'Registro Profissional' },        
+            { url: 'fotos/WhatsApp Image 2026-03-19 at 20.23.21 (1).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.43.jpeg', title: 'Atendimento Especializado' },    
+            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.43 (1).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.44.jpeg', title: 'Registro Profissional' },        
+            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.11.44 (1).jpeg', title: 'Registro Profissional' },    
+            { url: 'fotos/WhatsApp Image 2026-03-25 at 19.12.58.jpeg', title: 'Registro Profissional' },        
+            { url: 'fotos/trajetoria.png', title: 'Trajetória e Preparação' },
+            { url: 'fotos/aqaq.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/ararw.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/dfafsafaf.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/hdfhhdr.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/jkjj.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/k.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/kghkh,.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/kgsagdfg.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/khkk.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/l.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/oo.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/WhatsApp Image 2026-04-10 at 12.01.06kj.jpeg', title: 'Registro Profissional' },
+            { url: 'fotos/WhatsApp Image 2026-04-10 at 12.01.07.jpeg', title: 'Registro Profissional' }
         ];
 
         function renderGallery() {
